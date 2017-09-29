@@ -3,28 +3,21 @@ package com.example.kawamura.kotlinscraping
 import android.app.Activity
 import android.app.ProgressDialog
 import android.graphics.Color
-import android.widget.TextView
 import android.os.AsyncTask
-import android.util.Log
+import android.widget.TextView
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
-import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 /**
  * Created by kawamura on 2017/09/10.
  */
 
-class Scraping(val mParentActivity: Activity,
-               var USDJPYTextView: TextView, var USDJPYTextViewValue: TextView,
-               var EURJPYTextView: TextView, var EURJPYTextViewValue: TextView,
-               var AUDJPYTextView: TextView, var AUDJPYTextViewValue: TextView,
-               var nikkeiTextView: TextView, var nikkeTextViewValue: TextView,
-               var BTCJPYTextView: TextView, var BTCJPYTextViewValue: TextView) : AsyncTask<Void, Void, Scraping.GetValue>()  {
+class ValueActivity(val mParentActivity: Activity,
+                    var USDJPYTextView: TextView, var USDJPYTextViewValue: TextView,
+                    var EURJPYTextView: TextView, var EURJPYTextViewValue: TextView,
+                    var AUDJPYTextView: TextView, var AUDJPYTextViewValue: TextView,
+                    var nikkeiTextView: TextView, var nikkeTextViewValue: TextView,
+                    var BTCJPYTextView: TextView, var BTCJPYTextViewValue: TextView) : AsyncTask<Void, Void, ValueActivity.GetValue>()  {
 
     private var mDialog: ProgressDialog? = null
 
@@ -34,67 +27,7 @@ class Scraping(val mParentActivity: Activity,
         //mDialog!!.show()
     }
 
-    /*
-    override fun doInBackground(vararg arg0: Void): String {
-        return exec_get()
-    }
 
-    override fun onPostExecute(string: String) {
-        mDialog!!.dismiss()
-        if (this.mTextView.text == "TextView"){
-            this.mTextView.text = string
-            this.mTextViewValue.text = "---"
-            this.mTextViewValue.setTextColor(Color.BLACK)
-        }
-        else{
-            val value0: Float = (this.mTextView.text as String).toFloat()
-            val value1: Float = string.toFloat()
-
-            this.mTextView.text = string
-
-            if (value0 > value1){
-                this.mTextView.setTextColor(Color.BLUE)
-                this.mTextViewValue.text = "↓"
-                this.mTextViewValue.setTextColor(Color.BLUE)
-            }
-            else if(value0 < value1){
-                this.mTextView.setTextColor(Color.RED)
-                this.mTextViewValue.text = "↑"
-                this.mTextViewValue.setTextColor(Color.RED)
-            }
-            else{
-                this.mTextView.setTextColor(Color.BLACK)
-                this.mTextViewValue.text = "---"
-                this.mTextViewValue.setTextColor(Color.BLACK)
-            }
-        }
-        //Log.d("debug", this.mTextView.text as String?) // TextView
-        //Log.d("debug", this.mTextView.text as String?) // 112.749
-    }
-
-    fun exec_get(): String {
-        try {
-            val url = "https://info.finance.yahoo.co.jp/fx/"
-            val document: Document = Jsoup.connect(url).get()
-
-            //val aTag: Elements = document.getElementsByTag("a")
-            val USDJPY = document.getElementById("USDJPY_top_bid")
-            //Log.d("debug","[fuga.text()]\r\n" + USDJPY.text() + "\r\n")
-
-            val EURJPY = document.getElementById("EURJPY_top_bid")
-            //Log.d("debug","[fuga.text()]\r\n" + EURJPY.text() + "\r\n")
-
-            val AUDJPY = document.getElementById("AUDJPY_top_bid")
-            //Log.d("debug","[fuga.text()]\r\n" + AUDJPY.text() + "\r\n")
-
-            return USDJPY.text()//, EURJPY.text(), AUDJPY.text()
-        } catch (e: IOException) {
-            // TODO Auto-generated catch block
-            e.printStackTrace()
-            return "ERROR"
-        }
-    }
-    */
 
     override fun doInBackground(vararg arg0: Void): GetValue {
         val getvalue = GetValue()
@@ -170,4 +103,3 @@ class Scraping(val mParentActivity: Activity,
         }
     }
 }
-
